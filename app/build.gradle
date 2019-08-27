@@ -63,6 +63,8 @@ dependencies {
     //Date
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
 
+    //AdapterDelegate
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.1.1'
 
     //Dagger
     implementation "com.google.dagger:dagger:$dagger_version"

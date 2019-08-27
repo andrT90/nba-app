@@ -7,5 +7,5 @@ import moxy.viewstate.strategy.StateStrategyType
 interface ErrorView : MvpView {
 
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun showError(message: String)
+    fun showError(message: CharSequence)
 }

@@ -6,5 +6,5 @@ import moxy.viewstate.strategy.StateStrategyType
 
 interface MessageView : MvpView {
     @StateStrategyType(OneExecutionStateStrategy::class)
-    fun showMessage()
+    fun showMessage(message: CharSequence)
 }

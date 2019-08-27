@@ -1,9 +1,9 @@
 package app.nba.app.di
 
 import android.app.Application
-import app.nba.app.di.component.AppComponent
-import app.nba.app.di.component.DaggerAppComponent
+import app.nba.app.di.component.*
 import app.nba.app.di.module.AppModule
+import app.nba.app.domain.Team
 
 object DI {
     private lateinit var appComponent: AppComponent
@@ -14,4 +14,22 @@ object DI {
             .appModule(AppModule(application))
             .build()
     }
+
+    fun conferenceComponent(): ConferenceComponent =
+        appComponent
+            .conferenceComponentBuilder()
+            .build()
+
+    fun teamsComponent(teams: List<Team>): TeamsComponent =
+        appComponent
+            .teamsComponentBuilder()
+            .teams(teams)
+            .build()
+
+    fun hostComponentBuilder(): HostComponent =
+        appComponent
+            .hostComponentBuilder()
+            .build()
+
+
 }
