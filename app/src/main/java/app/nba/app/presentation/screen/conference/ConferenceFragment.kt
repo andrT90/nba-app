@@ -12,7 +12,11 @@ import app.nba.app.di.DI
 import app.nba.app.domain.Conference
 import app.nba.app.presentation.base.BaseFragment
 import app.nba.app.presentation.screen.conference.model.ConferenceState
+import dagger.Lazy
 import kotlinx.android.synthetic.main.conference.*
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
 class ConferenceFragment : BaseFragment(), ConferenceView {
 
@@ -25,6 +29,16 @@ class ConferenceFragment : BaseFragment(), ConferenceView {
 
     override val layoutRes: Int
         get() = R.layout.conference
+
+
+    @Inject
+    lateinit var lazyPresenter: Lazy<ConferencePresenter>
+
+    @InjectPresenter
+    lateinit var presenter: ConferencePresenter
+
+    @ProvidePresenter
+    fun providePresenter(): ConferencePresenter = lazyPresenter.get()
 
     override fun onAttach(context: Context?) {
         DI.conferenceComponent().inject(this)

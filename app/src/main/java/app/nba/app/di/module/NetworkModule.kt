@@ -1,7 +1,7 @@
 package app.nba.app.di.module
 
 import app.nba.app.BuildConfig
-import app.nba.app.data.net.NbaRapidApiService
+import app.nba.app.data.net.TeamService
 import app.nba.app.data.net.interceptor.AuthInterceptor
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -41,13 +41,14 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideNbaRapidApiService(
+    fun provideTeamService(
         client: OkHttpClient,
         gson: Gson
-    ): NbaRapidApiService = Retrofit.Builder()
+    ): TeamService = Retrofit.Builder()
+        .baseUrl("https://free-nba.p.rapidapi.com/")
         .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
         .addConverterFactory(GsonConverterFactory.create(gson))
         .client(client)
         .build()
-        .create(NbaRapidApiService::class.java)
+        .create(TeamService::class.java)
 }
