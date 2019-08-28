@@ -53,6 +53,7 @@ class ConferenceFragment : BaseFragment(), ConferenceView {
 
     override fun render(state: ConferenceState) {
         pager.adapter = ConferencePagerAdapter(state.conference, childFragmentManager)
+        refresher?.isEnabled = false
     }
 
 }

@@ -15,7 +15,7 @@ class MainHost : AppCompatActivity() {
 
 
     @Inject
-    lateinit var navigationHolder: NavigatorHolder
+    lateinit var navigatorHolder: NavigatorHolder
 
     @Inject
     lateinit var appLauncher: AppLauncher
@@ -31,15 +31,15 @@ class MainHost : AppCompatActivity() {
     }
 
 
-    override fun onPause() {
-        navigationHolder.setNavigator(navigator)
-        super.onPause()
+    override fun onResumeFragments() {
+        super.onResumeFragments()
+        navigatorHolder.setNavigator(navigator)
     }
 
 
-    override fun onResume() {
-        super.onResume()
-        navigationHolder.removeNavigator()
+    override fun onPause() {
+        navigatorHolder.removeNavigator()
+        super.onPause()
     }
 
 

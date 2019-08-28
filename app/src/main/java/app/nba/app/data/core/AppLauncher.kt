@@ -6,5 +6,5 @@ import javax.inject.Inject
 
 class AppLauncher @Inject constructor(private val router: Router) {
 
-    fun launch() = router.newRootChain(ConferenceScreen())
+    fun launch() = router.newRootScreen(ConferenceScreen())
 }

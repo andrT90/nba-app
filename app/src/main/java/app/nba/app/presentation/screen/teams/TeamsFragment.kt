@@ -1,5 +1,6 @@
 package app.nba.app.presentation.screen.teams
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,15 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import app.nba.app.di.DI
 import app.nba.app.domain.Team
 import app.nba.app.presentation.base.BaseFragment
 import app.nba.app.presentation.screen.teams.model.TeamsState
 import app.nba.app.presentation.view.BaseRecyclerViewAdapter
+import dagger.Lazy
+import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
 class TeamsFragment : BaseFragment(), TeamsView {
 
@@ -25,8 +31,21 @@ class TeamsFragment : BaseFragment(), TeamsView {
     override val layoutRes: Int
         get() = -1
 
+    @Inject
+    lateinit var lazyPresenter: Lazy<TeamsPresenter>
+
+    @InjectPresenter
+    lateinit var presenter: TeamsPresenter
+
+    @ProvidePresenter
+    fun providePresenter(): TeamsPresenter = lazyPresenter.get()
+
     private lateinit var list: RecyclerView
-    private val adapter: BaseRecyclerViewAdapter by lazy { BaseRecyclerViewAdapter() }
+    private val adapter: BaseRecyclerViewAdapter by lazy {
+        BaseRecyclerViewAdapter(
+            TeamsAdapterDelegate()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +54,11 @@ class TeamsFragment : BaseFragment(), TeamsView {
     ): View? {
         list = RecyclerView(requireContext())
         return list
+    }
+
+    override fun onAttach(context: Context?) {
+        DI.teamsComponent(arguments?.getParcelableArrayList(KEY_TEAMS) ?: emptyList()).inject(this)
+        super.onAttach(context)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

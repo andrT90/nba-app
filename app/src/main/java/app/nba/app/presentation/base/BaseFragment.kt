@@ -1,11 +1,14 @@
 package app.nba.app.presentation.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import app.nba.app.R
 import app.nba.app.data.core.MessageDelegate
+import app.nba.app.extention.inflate
 import moxy.MvpAppCompatFragment
 
 abstract class BaseFragment : MvpAppCompatFragment(), ErrorView, MessageView, LoadingView {
@@ -13,17 +16,22 @@ abstract class BaseFragment : MvpAppCompatFragment(), ErrorView, MessageView, Lo
     @get:LayoutRes
     abstract val layoutRes: Int
 
-    private var refresher: SwipeRefreshLayout? = null
+    protected var refresher: SwipeRefreshLayout? = null
     private var messageDelegate: MessageDelegate? = null
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        refresher = view.findViewById(R.id.refresher)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val v = container?.inflate(layoutRes)
+        refresher = v?.findViewById(R.id.refresher)
         messageDelegate = MessageDelegate(requireContext())
+        return v
     }
 
     override fun onDestroyView() {
+        refresher = null
         messageDelegate = null
         super.onDestroyView()
     }
