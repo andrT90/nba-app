@@ -7,9 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    
-    
+
+
     <style name="Toolbar">
+        <item name="android:id">@id/toolbar</item>
         <item name="titleTextAppearance">@style/TextAppearance</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
@@ -30,6 +31,7 @@
 
 
     <style name="Team" />
+
     <style name="Team.Label">
         <item name="android:padding">@dimen/dp_16</item>
         <item name="android:layout_width">match_parent</item>

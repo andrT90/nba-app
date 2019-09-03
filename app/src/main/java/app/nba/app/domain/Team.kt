@@ -5,7 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Team(
-    val id: Int = 0,
+    val id: Long = 0,
     val abbreviation: String = "",
     val city: String = "",
     val conference: String = "",

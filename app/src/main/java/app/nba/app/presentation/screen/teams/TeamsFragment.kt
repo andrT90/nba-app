@@ -43,7 +43,7 @@ class TeamsFragment : BaseFragment(), TeamsView {
     private lateinit var list: RecyclerView
     private val adapter: BaseRecyclerViewAdapter by lazy {
         BaseRecyclerViewAdapter(
-            TeamsAdapterDelegate()
+            TeamsAdapterDelegate { presenter.teamClicked(it) }
         )
     }
 

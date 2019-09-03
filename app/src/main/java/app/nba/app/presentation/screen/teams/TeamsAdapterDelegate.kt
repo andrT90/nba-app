@@ -2,12 +2,15 @@ package app.nba.app.presentation.screen.teams
 
 import android.view.ViewGroup
 import app.nba.app.R
+import app.nba.app.domain.Team
 import app.nba.app.extention.inflate
 import app.nba.app.presentation.screen.teams.model.TeamViewModel
 import app.nba.app.presentation.view.BaseViewModel
 import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
 
-class TeamsAdapterDelegate :
+typealias TeamClickListener = (Team) -> Unit
+
+class TeamsAdapterDelegate(private val callback: TeamClickListener) :
     AbsListItemAdapterDelegate<TeamViewModel, BaseViewModel, TeamViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup): TeamViewHolder = TeamViewHolder(
         parent.inflate(
@@ -27,6 +30,6 @@ class TeamsAdapterDelegate :
         holder: TeamViewHolder,
         payloads: MutableList<Any>
     ) {
-        holder.bind(item)
+        holder.bind(item, callback)
     }
 }

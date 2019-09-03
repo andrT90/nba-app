@@ -8,12 +8,14 @@ import app.nba.app.presentation.screen.team.model.ErrorState
 import app.nba.app.presentation.screen.team.model.LoadingState
 import app.nba.app.presentation.screen.team.model.State
 import moxy.InjectViewState
+import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
 class TeamPresenter @Inject constructor(
     private val teamId: Long,
-    private val getTeamInteractor: GetTeamInteractor
+    private val getTeamInteractor: GetTeamInteractor,
+    private val router: Router
 ) : BasePresenter<TeamView>() {
 
     override fun onFirstViewAttach() {
@@ -21,14 +23,15 @@ class TeamPresenter @Inject constructor(
 
         getTeamInteractor
             .get(GetTeamInteractor.Params(teamId))
-            .map { DataState(it.team) }
-            .cast(State::class.java)
+            .map { DataState(it.team) as State }
             .onErrorReturn { ErrorState(it) }
             .observeOnMain()
-            .startWith { LoadingState }
-            .subscribe {
-                viewState.render(it)
-            }
+            .startWith(LoadingState)
+            .subscribe { viewState.render(it) }
             .append()
+    }
+
+    fun onBackPressed() {
+        router.exit()
     }
 }

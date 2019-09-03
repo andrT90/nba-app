@@ -1,6 +1,8 @@
 package app.nba.app.presentation.screen.team
 
 import android.content.Context
+import android.os.Bundle
+import android.view.View
 import androidx.core.os.bundleOf
 import app.nba.app.R
 import app.nba.app.di.DI
@@ -50,6 +52,12 @@ class TeamFragment : BaseFragment(), TeamView {
         super.onAttach(context)
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        toolbar.setNavigationOnClickListener { presenter.onBackPressed() }
+    }
+
     override fun render(state: State) {
         when (state) {
             is DataState -> renderData(state.team)
@@ -62,6 +70,7 @@ class TeamFragment : BaseFragment(), TeamView {
         name.text = team.fullName
         division.text = getString(R.string.team_division_format, team.division)
         conference.text = getString(R.string.team_conference_format, team.conference)
+        toolbar.title = team.name
         refresher?.hideLoadingAndDisable()
     }
 
@@ -73,5 +82,4 @@ class TeamFragment : BaseFragment(), TeamView {
     private fun renderLoading() {
         refresher?.isRefreshing = true
     }
-
 }
