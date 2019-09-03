@@ -17,8 +17,8 @@ object DI {
 
     fun conferenceComponent(): ConferenceComponent =
         appComponent
-            .conferenceComponentBuilder()
-            .build()
+            .conferenceComponentFactory()
+            .create()
 
     fun teamsComponent(teams: List<Team>): TeamsComponent =
         appComponent
@@ -27,8 +27,12 @@ object DI {
 
     fun hostComponentBuilder(): HostComponent =
         appComponent
-            .hostComponentBuilder()
-            .build()
+            .hostComponentFactory()
+            .create()
 
+    fun teamComponent(id: Long): TeamComponent =
+        appComponent
+            .teamComponentFactory()
+            .create(id)
 
 }

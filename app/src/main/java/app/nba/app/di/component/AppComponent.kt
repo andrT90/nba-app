@@ -17,7 +17,8 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    fun hostComponentBuilder(): HostComponent.Bulder
-    fun conferenceComponentBuilder(): ConferenceComponent.Builder
+    fun hostComponentFactory(): HostComponent.Factory
+    fun conferenceComponentFactory(): ConferenceComponent.Factory
     fun teamsComponentFactory(): TeamsComponent.Factory
+    fun teamComponentFactory(): TeamComponent.Factory
 }
