@@ -2,7 +2,6 @@ package app.nba.app.presentation.screen.host
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import app.nba.app.R
 import app.nba.app.data.core.AppLauncher
 import app.nba.app.data.navigation.AppNavigator
 import app.nba.app.di.DI
@@ -11,7 +10,8 @@ import javax.inject.Inject
 
 class MainHost : AppCompatActivity() {
 
-    private val navigator = object : AppNavigator(this, R.id.container, supportFragmentManager) {}
+    private val navigator =
+        object : AppNavigator(this, android.R.id.content, supportFragmentManager) {}
 
 
     @Inject
@@ -23,7 +23,6 @@ class MainHost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         DI.hostComponentBuilder().inject(this)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.main)
 
         if (savedInstanceState == null) {
             appLauncher.launch()

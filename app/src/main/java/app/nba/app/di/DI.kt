@@ -22,9 +22,8 @@ object DI {
 
     fun teamsComponent(teams: List<Team>): TeamsComponent =
         appComponent
-            .teamsComponentBuilder()
-            .teams(teams)
-            .build()
+            .teamsComponentFactory()
+            .create(teams)
 
     fun hostComponentBuilder(): HostComponent =
         appComponent

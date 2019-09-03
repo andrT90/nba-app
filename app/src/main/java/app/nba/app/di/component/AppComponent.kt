@@ -19,5 +19,5 @@ interface AppComponent {
 
     fun hostComponentBuilder(): HostComponent.Bulder
     fun conferenceComponentBuilder(): ConferenceComponent.Builder
-    fun teamsComponentBuilder(): TeamsComponent.Builder
+    fun teamsComponentFactory(): TeamsComponent.Factory
 }
