@@ -2,7 +2,7 @@ package app.nba.app.data.mapper
 
 import app.nba.app.data.net.dto.TeamDto
 import app.nba.app.domain.Team
-import app.nba.app.presentation.screen.teams.model.TeamViewModel
+import app.nba.app.presentation.base.model.TeamViewModel
 
 fun TeamDto.toTeam(): Team =
     Team(

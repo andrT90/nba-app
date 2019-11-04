@@ -35,4 +35,10 @@ object DI {
             .teamComponentFactory()
             .create(id)
 
+
+    fun pagesConferenceComponentt(teams: List<Team>): PagerConferenceComponent =
+        appComponent
+            .pageConferenceComponent()
+            .create(teams)
+
 }

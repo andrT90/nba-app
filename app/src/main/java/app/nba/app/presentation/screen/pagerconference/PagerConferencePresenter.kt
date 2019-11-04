@@ -1,4 +1,4 @@
-package app.nba.app.presentation.screen.teams
+package app.nba.app.presentation.screen.pagerconference
 
 import app.nba.app.data.navigation.screen.TeamScreen
 import app.nba.app.domain.Team
@@ -10,20 +10,17 @@ import ru.terrakok.cicerone.Router
 import javax.inject.Inject
 
 @InjectViewState
-class TeamsPresenter @Inject constructor(
-    private val teams: List<Team>,
+class PagerConferencePresenter @Inject constructor(
+    private val team: List<Team>,
     private val router: Router
-) :
-    BasePresenter<TeamsView>() {
+) : BasePresenter<PagerConferenceView>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        viewState.render(TeamsState(teams.map { TeamViewModel(it) }))
+        viewState.render(TeamsState(team.map { TeamViewModel(it) }))
     }
 
-
-    fun teamClicked(team: Team) {
+    fun teamsClicked(team: Team) {
         router.navigateTo(TeamScreen(team.id))
     }
-
 }

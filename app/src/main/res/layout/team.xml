@@ -21,7 +21,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -32,25 +32,47 @@
                 android:layout_width="@dimen/dp_104"
                 android:layout_height="@dimen/dp_104"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/dp_64"
-                android:src="@drawable/team_logo" />
+                app:layout_constraintVertical_bias="0.2"
+                android:layout_marginTop="@dimen/dp_24"
+                android:contentDescription="@string/content_description_logo"
+                android:src="@drawable/team_logo"
+                app:layout_constraintBottom_toTopOf="@+id/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/name"
                 style="@style/Team.Label"
+                app:layout_constraintBottom_toTopOf="@+id/conference"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                android:layout_marginTop="@dimen/dp_8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/logo"
                 tools:text="Atlanta" />
 
             <TextView
                 android:id="@+id/conference"
                 style="@style/Team.Label"
+                app:layout_constraintBottom_toTopOf="@+id/division"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="@dimen/dp_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name"
                 tools:text="East" />
 
             <TextView
                 android:id="@+id/division"
                 style="@style/Team.Label"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="1"
                 tools:text="Southeast" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

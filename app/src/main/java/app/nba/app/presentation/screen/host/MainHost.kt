@@ -1,7 +1,9 @@
 package app.nba.app.presentation.screen.host
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import app.nba.app.R
@@ -45,6 +47,8 @@ class MainHost : AppCompatActivity() {
         if (savedInstanceState == null) {
             appLauncher.launch()
         }
+
+        findViewById<View>(android.R.id.content).setBackgroundColor(ContextCompat.getColor(this, R.color.gray))
     }
 
 

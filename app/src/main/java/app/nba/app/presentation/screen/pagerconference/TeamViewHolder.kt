@@ -1,4 +1,4 @@
-package app.nba.app.presentation.screen.teams
+package app.nba.app.presentation.screen.pagerconference
 
 import android.view.View
 import app.nba.app.presentation.base.model.TeamViewModel
@@ -10,10 +10,15 @@ class TeamViewHolder(containerView: View) : BaseViewHolder(containerView) {
     private lateinit var callback: TeamClickListener
 
     init {
-        team.setOnClickListener { callback.invoke(item.team) }
+        itemView.setOnClickListener {
+            callback(item.team)
+        }
     }
 
-    fun bind(item: TeamViewModel, callback: TeamClickListener) {
+    fun bind(
+        item: TeamViewModel,
+        callback: TeamClickListener
+    ) {
         this.item = item
         this.callback = callback
         team.text = item.name

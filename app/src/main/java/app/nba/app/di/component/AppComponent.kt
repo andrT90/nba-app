@@ -21,4 +21,5 @@ interface AppComponent {
     fun conferenceComponentFactory(): ConferenceComponent.Factory
     fun teamsComponentFactory(): TeamsComponent.Factory
     fun teamComponentFactory(): TeamComponent.Factory
+    fun pageConferenceComponent(): PagerConferenceComponent.Factory
 }

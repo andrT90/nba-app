@@ -1,4 +1,4 @@
-package app.nba.app.presentation.screen.teams
+package app.nba.app.presentation.screen.pagerconference
 
 import android.view.ViewGroup
 import app.nba.app.R
@@ -12,18 +12,14 @@ typealias TeamClickListener = (Team) -> Unit
 
 class TeamsAdapterDelegate(private val callback: TeamClickListener) :
     AbsListItemAdapterDelegate<TeamViewModel, BaseViewModel, TeamViewHolder>() {
-    override fun onCreateViewHolder(parent: ViewGroup): TeamViewHolder = TeamViewHolder(
-        parent.inflate(
-            R.layout.teams_item_list
-        )
-    )
+    override fun onCreateViewHolder(parent: ViewGroup): TeamViewHolder =
+        TeamViewHolder(parent.inflate(R.layout.pager_conference_team_item))
 
     override fun isForViewType(
         item: BaseViewModel,
         items: MutableList<BaseViewModel>,
         position: Int
     ): Boolean = item is TeamViewModel
-
 
     override fun onBindViewHolder(
         item: TeamViewModel,

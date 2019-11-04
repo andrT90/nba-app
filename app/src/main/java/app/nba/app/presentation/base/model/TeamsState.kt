@@ -1,6 +1,5 @@
-package app.nba.app.presentation.screen.teams.model
+package app.nba.app.presentation.base.model
 
-import app.nba.app.domain.Team
 import app.nba.app.presentation.view.BaseViewModel
 
 data class TeamsState(val team: List<BaseViewModel>)

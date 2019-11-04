@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import app.nba.app.di.DI
 import app.nba.app.domain.Team
 import app.nba.app.presentation.base.BaseFragment
-import app.nba.app.presentation.screen.teams.model.TeamsState
+import app.nba.app.presentation.base.model.TeamsState
 import app.nba.app.presentation.view.BaseRecyclerViewAdapter
 import dagger.Lazy
 import moxy.presenter.InjectPresenter

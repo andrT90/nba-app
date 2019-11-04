@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import app.nba.app.R
+import app.nba.app.data.navigation.screen.PagerTeamsScreen
 import app.nba.app.data.navigation.screen.TeamsScreen
 import app.nba.app.di.DI
 import app.nba.app.domain.Conference
@@ -64,7 +65,8 @@ private class ConferencePagerAdapter(
 ) : FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment =
-        TeamsScreen(conferences[position].teams).fragment
+        if (position == 0) TeamsScreen(conferences[position].teams).fragment
+        else PagerTeamsScreen(conferences[position].teams).fragment
 
     override fun getCount(): Int = conferences.size
 
